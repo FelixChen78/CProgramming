@@ -64,13 +64,17 @@ int main()
 //    printHelloWorld();
 //    fahrenheitCelsiusTable();
 //    fahrenheitCelsiusTableFloat();
-    fahrenheitCelsiusReverse();
+//    fahrenheitCelsiusReverse();
     return 0;
 }
 
 
-/**                          C PROGRAMMING                            */
-/** CHEAT CHEAT
+/**                            CHEAT CHEAT                                */
+
+
+/**                            C PROGRAMMING                              */
+
+/** C STRINGS
  * new line = \n
  * tab = \t
  * backslash = \\
@@ -94,6 +98,10 @@ int main()
  * METHODS: CAMEL CASE = methodName
  * VARIABLES: CAMEL CASE = variableName
  */
+
+
+
+/**                              GITHUB                                   */
 
 /** ADD PROJECT TO GITHUB
  * Initial commit and push to repository:
