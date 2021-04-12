@@ -1,8 +1,15 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define LOWER 0 /* Lower limit of table */
 #define UPPER 300 /* upper limit */
 #define STEP 20 /* step size */
+
+void printHelloWorld()
+{
+    char helloWorld[] = "Hello, World ! \n";
+    printf("%s", helloWorld);
+}
 
 /** print Fahrenheit-Celsius table
         for fahrenheit = 0, 20, ..., 300 */
@@ -54,10 +61,34 @@ void fahrenheitCelsiusTableFloat()
     printf("-------------------------- \n");
 
 }
-void printHelloWorld()
+
+void inputOutput()
 {
-    char helloWorld[] = "Hello, World ! \n";
-    printf("%s", helloWorld);
+    int c;
+    c = getchar();
+    while (c != EOF) {
+//        putchar(c);
+        printf("%c", c);
+        c = getchar();
+    }
+}
+
+void inputOutput2()
+{
+    int c;
+    while ((c = getchar()) != EOF)
+        putchar(c);
+}
+
+void eof()
+{
+    /**TO SIMULATE EOF:
+     *  On mac use: ctrl + d
+     *  On windows use: ctrl + z
+    */
+    printf("Value of EOF = %d", EOF); /* prints value of EOF */
+    printf("\nEnter char to output 0 or ctrl + d to output 1 ");
+    printf("\ngetchar() != EOF: %i", getchar() != EOF); /* prints 1 when not EOF. prints 0 when EOF*/
 }
 int main()
 {
@@ -65,6 +96,11 @@ int main()
 //    fahrenheitCelsiusTable();
 //    fahrenheitCelsiusTableFloat();
 //    fahrenheitCelsiusReverse();
+//    inputOutput();
+//    inputOutput2();
+    eof();
+
+
     return 0;
 }
 
@@ -101,7 +137,11 @@ int main()
 
 
 
-/**                              GITHUB                                   */
+/**                              GIT/GITHUB                                   */
+
+/** CLONE A EXISTING PROJECT FROM GITHUB
+ * git clone <repository link>
+ */
 
 /** ADD PROJECT TO GITHUB
  * Initial commit and push to repository:
@@ -113,7 +153,20 @@ int main()
  * git push -u origin main
  */
 
-/** FORK BRANCH FROM MASTER BRANCH
+/** FORK REPOSITORY AND PULL REQUEST
+ * Fork a GitHub repository.
+ * Clone the forked repository to your local system.
+ * Add a Git remote for the original repository.
+ * Create a feature branch in which to place your changes.
+ * Make your changes to the new branch.
+ * Commit the changes to the branch.
+ * Push the branch to GitHub.
+ * Open a pull request from the new branch to the original repo.
+ * Clean up after your pull request is merged.
+ */
+
+
+/** CREATE NEW BRANCH FROM MASTER BRANCH
  * git checkout main
  * git branch <new branch>
  * git checkout <new branch>
@@ -132,7 +185,7 @@ int main()
  * git merge <new branch>
  */
 
-/** GITHUB COMMANDS
+/** GIT COMMANDS
  * CREATE NEW BRANCH:
  *  git branch -m <local-branch>
  * ADD GITHUB REPOSITORY TO BRANCH:
@@ -155,4 +208,6 @@ int main()
  *  git log --graph
  * CREATE AND SWITCH TO NEW BRANCH:
  *  git checkout -b <local-branch>
+ * CLONE REPOSITORY FROM GITHUB:
+ *  git clone <repository link>
  */
