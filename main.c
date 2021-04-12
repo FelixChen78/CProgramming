@@ -93,11 +93,48 @@ int main()
  * VARIABLES: CAMEL CASE = variableName
  */
 
-/** GIT TERMINAL
+/** ADD PROJECT TO GITHUB
+ * Initial commit and push to repository:
  * git init
  * git add .
  * git commit -m "first commit"
  * git branch -m Main
  * git remote add origin https://github.com/FelixChen78/MyRepository.git
  * git push -u origin main
+ */
+
+/** FORK BRANCH FROM MASTER BRANCH
+ * git checkout main
+ * git branch <new branch>
+ * git checkout <new branch>
+ */
+
+/** MERGE CHANGES TO MASTER BRANCH
+ * git add . or git add -A
+ * git commit -m "commit message"
+ * git checkout main
+ * git merge <new branch>
+ */
+
+/** GITHUB COMMANDS
+ * CREATE NEW BRANCH:
+ *  git branch -m <local-branch>
+ * ADD GITHUB REPOSITORY TO BRANCH:
+ *  git remote add origin <github repository link>
+ * PUSH COMMIT TO BRANCH:
+ *  git push -u origin <local-branch>
+ * DELETE BRANCH:
+ *  git branch -d <local-branch>
+ * ADD CHANGES TO GIT:
+ *  git add .
+ * COMMIT FILES TO GIT:
+ *  git commit -m "message"
+ * PUSH COMMIT TO BRANCH:
+ *  git push -u origin <local-branch>
+ * SWITCH BRANCH:
+ *  git checkout <local-branch>
+ * MERGE BRANCH INTO CURRENT BRANCH:
+ *  git merge <local-branch>
+ * CHECK USER COMMIT LOG:
+ *  git log --graph
  */
