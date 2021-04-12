@@ -109,6 +109,12 @@ int main()
  * git checkout <new branch>
  */
 
+/** ADD CHANGES TO BRANCH
+ * git add . or git add -A
+ * git commit -m "commit message"
+ * git push -u origin <local-branch>
+ */
+
 /** MERGE CHANGES TO MASTER BRANCH
  * git add . or git add -A
  * git commit -m "commit message"
@@ -137,4 +143,6 @@ int main()
  *  git merge <local-branch>
  * CHECK USER COMMIT LOG:
  *  git log --graph
+ * CREATE AND SWITCH TO NEW BRANCH:
+ *  git checkout -b <local-branch>
  */
