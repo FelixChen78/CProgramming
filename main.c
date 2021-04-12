@@ -94,5 +94,10 @@ int main()
  */
 
 /** GIT TERMINAL
- * 
+ * git init
+ * git add .
+ * git commit -m "first commit"
+ * git branch -m Main
+ * git remote add origin https://github.com/FelixChen78/MyRepository.git
+ * git push -u origin main
  */
