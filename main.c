@@ -4,7 +4,9 @@
 #define LOWER 0 /* lower limit of table */
 #define UPPER 300 /* upper limit */
 #define STEP 20 /* step size */
-#define NONBLANK '_' /* used as sentinel */
+#define NON_BLANK '_' /* used as sentinel */
+#define IN 1 /* inside a word */
+#define  OUT 0 /* outside a word */
 
 void printHelloWorld() // Ex 1-1
 {
@@ -15,7 +17,8 @@ void printHelloWorld() // Ex 1-1
 
 void unknownEscapeSequence() // Ex 1-2
 {
-    printf("\c"); /* Ignores backslash because \c is unknown*/
+    //uncomment
+//    printf("\c"); /* Ignores backslash because \c is unknown */
 }
 /** print Fahrenheit-Celsius table
         for fahrenheit = 0, 20, ..., 300 */
@@ -107,7 +110,7 @@ void inputOutput2()
 
 void eof() // Ex 1-6
 {
-    /**TO SIMULATE EOF:
+    /** TO SIMULATE EOF:
      *  On mac use: ctrl + d
      *  On windows use: ctrl + z
     */
@@ -165,13 +168,12 @@ void blankTabsNewlineCount() // Ex 1-8
 
 }
 
-void replaceMultipleSpaceWithOne()
+void replaceMultipleSpaceWithOne() // Ex 1-9
 {
     int c, pc;
-    pc = NONBLANK;
+    pc = NON_BLANK;
     while((c = getchar()) != EOF) {
-        if(c == ' ')
-        {
+        if(c == ' ') {
             if(pc != ' ')
                 putchar(c);
         }
@@ -181,6 +183,67 @@ void replaceMultipleSpaceWithOne()
         pc = c;
     }
 }
+
+void toEscapeSequence() // Ex 1-10
+{
+    int c;
+    while ((c = getchar()) != EOF) {
+        if (c == '\b') // ctrl h
+            printf("\\b");
+        if (c == '\\') // /
+            printf("\\\\");
+        if (c == '\t') // tab
+            printf("\\t");
+        if(c != '\t' && c != '\b' && c != '\\')
+            putchar(c);
+    }
+}
+
+/* count lines, words, and characters in input */
+void wordCount()
+{
+    int c, nl, nw, nc, state;
+    state = OUT;
+    nl = nw = nc = 0;
+    while ((c = getchar()) != EOF) {
+        ++nc;
+        if (c == '\n')
+            ++nl;
+        if (c == ' ' || c == '\n' || c == '\t')
+            state = OUT;
+        else if (state == OUT) {
+            state = IN;
+            ++nw;
+        }
+    }
+    printf("%d %d %d\n", nl, nw, nc);
+}
+
+/** Ex 1-11
+ * you can test 3 type of inputs:
+ *      valid inputs
+ *      invalid inputs
+ *      boundary conditions
+ */
+
+
+void wordPerLine() // Ex 1-12
+{
+    int c, state;
+    state = OUT;
+    while ((c = getchar()) != EOF) {
+        if (c != ' ' && c != '\n' && c != '\t') {
+            if (state == OUT)
+                state = IN;
+            putchar(c);
+        }
+        else if (state == IN) {
+            state = OUT;
+            putchar('\n');
+        }
+    }
+}
+
 
 /** Driver Code */
 int main()
@@ -199,7 +262,10 @@ int main()
 //    lineCount();
 //    blankTabsNewlineCount();
 //    replaceMultipleSpaceWithOne();
-
+//    toEscapeSequence();
+    //(page22)
+//    wordCount();
+//    wordPerLine();
     return 0;
 }
 
