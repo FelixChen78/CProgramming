@@ -9,8 +9,11 @@
 #define OUT 0 /* outside a word */
 #define R_MAX 10 /* max range of histogram */
 #define F_MAX 20 /* max frequency of histogram */
+#define ASCII_RANGE 127 /* range of ASCII values */
 
 /** Chapter 1 functions */
+
+/** GETTING STARTED */
 void printHelloWorld() // Ex 1-1
 {
     char helloWorld[] = "Hello, World ! \n";
@@ -24,7 +27,9 @@ void unknownEscapeSequence() // Ex 1-2
 //    printf("\c"); /* Ignores backslash because \c is unknown */
 }
 
-/** print Fahrenheit-Celsius table
+/** VARIABLES AND ARITHMETIC EXPRESSIONS */
+
+/* print Fahrenheit-Celsius table
         for fahrenheit = 0, 20, ..., 300 */
 void fahrenheitCelsiusTable()
 {
@@ -80,6 +85,7 @@ void fahrenheitCelsiusTableFloat() // Ex 1-4
 
 }
 
+/** FOR STATEMENT && SYMBOLIC CONSTANT */
 void fahrenheitCelsiusReverse() // Ex 1-5
 {
     int fahrenheit, celsius;
@@ -94,6 +100,7 @@ void fahrenheitCelsiusReverse() // Ex 1-5
     printf("-------------------------- \n");
 }
 
+/** CHARACTER INPUT AND OUTPUT */
 void inputOutput()
 {
     int c;
@@ -112,12 +119,13 @@ void inputOutput2()
         putchar(c);
 }
 
+/** TO SIMULATE EOF:
+ *  On mac use: ctrl + d
+ *  On windows use: ctrl + z
+*/
+
 void eof() // Ex 1-6
 {
-    /** TO SIMULATE EOF:
-     *  On mac use: ctrl + d
-     *  On windows use: ctrl + z
-    */
     printf("\nEnter char to output 0 or ctrl + d to output 1 ");
     printf("\ngetchar() != EOF: %i", getchar() != EOF); /* prints 1 when not EOF. prints 0 when EOF*/
 }
@@ -250,6 +258,7 @@ void wordNewLine() // Ex 1-12
     }
 }
 
+/** ARRAYS */
 void countDigit() {
     int c, i, nwhite, nother;
     int ndigit[10];
@@ -269,7 +278,7 @@ void countDigit() {
     printf(", white space = %d, other = %d\n", nwhite, nother);
 }
 
-/** steps:
+/* steps:
  *      identify is a word
  *      count word length
  *      store frequency of word length in array
@@ -345,10 +354,80 @@ void wordLengthHistogram() // Ex 1-13
     printf("\t\b\b\b\b\b  1 2 3 4 5 6 7 8 9 10+");
 
 
-    /* Legend */
-
 }
 
+void characterFrequency() // Ex 1-14
+{
+    int c, i, j;
+    int characters[ASCII_RANGE];
+    int characterFrequency[ASCII_RANGE];
+
+
+    for (i = 0; i < ASCII_RANGE; ++i) {
+        characterFrequency[i] = 0;
+        characters[i] = i;
+    }
+
+    while ((c = getchar()) != EOF)
+        if (c != '\n' && c != '\t' && c != ' ') {
+            for (i = 0; i < ASCII_RANGE; ++i)
+                if (characters[i] == c)
+                    ++characterFrequency[i];
+    }
+
+    for (i = 0; i < ASCII_RANGE; ++i) {
+        if (characterFrequency[i] != 0) { //ASCII 0 is null
+            printf("%c: %d | ", characters[i], characterFrequency[i]);
+            for (j = 0; j < characterFrequency[i]; ++j)
+                putchar('*');
+            putchar('\n');
+        }
+    }
+}
+
+/** FUNCTIONS */
+
+/* function declaration aka function prototype
+ *  Note: Function declaration is required when you call the function in another file
+ */
+int power(int m, int n);
+
+/* power: raise base to n-th power; constraint: n >= 0 */
+int power(int base, int n)
+{
+    int i, p;
+    p = 1;
+    for (i = 1; i <= n; ++i)
+        p = p * base;
+    return p;
+}
+
+int callPower()
+{
+    int i;
+    for (i = 0; i < 10; ++i)
+        printf("%d %d %d\n", i, power(2,i), power(-3, i));
+}
+
+void fahrenheitCelsiusAsFunction(); // Ex 1-15
+void fahrenheitCelsiusAsFunction()
+{
+    int fahrenheit, celsius;
+    printf("__________________________ \n");
+    printf("|Fahrenheit-Celsius Table| \n");
+    printf("-------------------------- \n");
+
+    for (fahrenheit = LOWER; fahrenheit < UPPER; fahrenheit += STEP) {
+        celsius = 5 * (fahrenheit - 32) / 9;
+        printf("|\t%3.0d \t| \t%6.1d\t |\n", fahrenheit, celsius);
+    }
+    printf("-------------------------- \n");
+}
+
+/** ARGUMENTS - CALL BY VALUE */
+
+
+/* NOTE: parameter variables are copies and can be used as temporary variables */
 /** Driver Code */
 int main()
 {
@@ -371,7 +450,12 @@ int main()
 //    wordCount();
 //    wordNewLine();
 //    countDigit();
-    wordLengthHistogram();
+//    wordLengthHistogram();
+//    characterFrequency();
+    //(page26)
+//    callPower();
+    fahrenheitCelsiusAsFunction();
+
     return 0;
 }
 
