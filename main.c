@@ -1,13 +1,16 @@
 #include <stdio.h>
 
-
+/** Chapter 1 definitions */
 #define LOWER 0 /* lower limit of table */
 #define UPPER 300 /* upper limit */
 #define STEP 20 /* step size */
 #define NON_BLANK '_' /* used as sentinel */
 #define IN 1 /* inside a word */
-#define  OUT 0 /* outside a word */
+#define OUT 0 /* outside a word */
+#define R_MAX 10 /* max range of histogram */
+#define F_MAX 20 /* max frequency of histogram */
 
+/** Chapter 1 functions */
 void printHelloWorld() // Ex 1-1
 {
     char helloWorld[] = "Hello, World ! \n";
@@ -20,6 +23,7 @@ void unknownEscapeSequence() // Ex 1-2
     //uncomment
 //    printf("\c"); /* Ignores backslash because \c is unknown */
 }
+
 /** print Fahrenheit-Celsius table
         for fahrenheit = 0, 20, ..., 300 */
 void fahrenheitCelsiusTable()
@@ -117,6 +121,7 @@ void eof() // Ex 1-6
     printf("\nEnter char to output 0 or ctrl + d to output 1 ");
     printf("\ngetchar() != EOF: %i", getchar() != EOF); /* prints 1 when not EOF. prints 0 when EOF*/
 }
+
 void eof2() //Ex 1-7
 {
     printf("Value of EOF = %d", EOF); /* prints value of EOF */
@@ -132,6 +137,7 @@ void characterCount()
     printf("%ld\n", nc);
 
 }
+
 void characterCount2()
 {
     double nc;
@@ -227,7 +233,7 @@ void wordCount()
  */
 
 
-void wordPerLine() // Ex 1-12
+void wordNewLine() // Ex 1-12
 {
     int c, state;
     state = OUT;
@@ -244,6 +250,104 @@ void wordPerLine() // Ex 1-12
     }
 }
 
+void countDigit() {
+    int c, i, nwhite, nother;
+    int ndigit[10];
+    nwhite = nother = 0;
+    for (i = 0; i < 10; ++i)
+        ndigit[i] = 0;
+    while ((c = getchar()) != EOF)
+        if (c >= '0' && c <= '9')
+            ++ndigit[c - '0'];
+        else if (c == ' ' || c == '\n' || c == '\t')
+            ++nwhite;
+        else
+            ++nother;
+    printf("digits =");
+    for (i = 0; i < 10; ++i)
+        printf(" %d", ndigit[i]);
+    printf(", white space = %d, other = %d\n", nwhite, nother);
+}
+
+/** steps:
+ *      identify is a word
+ *      count word length
+ *      store frequency of word length in array
+ *      graph horizontal histogram:
+ *              loop frequency array length
+ *                  print number "\t |"
+ *                  loop length of value stored in frequency array
+ *                          print *
+ *      graph vertical histogram:
+ *              loop max number of words (descending)
+ *                  loop frequency array length
+ *                      check if value at frequency array index is greater or equal to descending value
+ *                          print *
+ */
+
+void wordLengthHistogram() // Ex 1-13
+{
+    int c, state, i, j, wlength;
+    int wcount[R_MAX];
+    wlength = 0;
+
+    for (i = 0; i < R_MAX; ++i)
+        wcount[i] = 0;
+    state = OUT;
+
+    while ((c = getchar()) != EOF) {
+        if (c != ' ' && c != '\n' && c != '\t') {
+            if (state == OUT)
+                state = IN;
+            ++wlength;
+
+        }
+        else if (state == IN) {
+            state = OUT;
+            if (wlength > R_MAX - 1)
+                ++wcount[R_MAX - 1];
+            else
+                ++wcount[wlength - 1];
+            wlength = 0;
+        }
+    }
+    printf("Horizontal Histogram \n");
+    printf("-------------------- \n");
+    /* Horizontal Histogram */
+    for (i = 1; i <= R_MAX; ++i) {
+        if (i != R_MAX) {
+            printf("%i \t\b\b\b\b: %i | ", i, wcount[i - 1]);
+        }
+        else
+            printf("%s \t\b\b\b\b: %i | ", "10+", wcount[i - 1]);
+        for (j = 1; j <= wcount[i - 1]; ++j)
+            putchar('*');
+        putchar('\n');
+    }
+    printf("\n\nVertical Histogram \n");
+    printf("------------------ \n");
+
+    /* Vertical Histogram */
+    for (i = F_MAX; i >= 0; --i) {
+        if (i != 0) {
+            printf("%i \t\b\b\b\b\b| ", i);
+            for (j = 0; j < R_MAX; ++j)
+                if (i <= wcount[j])
+                    printf("* ");
+                else
+                    printf("  ");
+            printf("\n");
+        }
+
+
+    }
+    printf("\t\b\b\b\b\b------------------------\n");
+    printf("\t\b\b\b\b\b  1 2 3 4 5 6 7 8 9 10+");
+
+
+    /* Legend */
+
+}
 
 /** Driver Code */
 int main()
@@ -265,8 +369,11 @@ int main()
 //    toEscapeSequence();
     //(page22)
 //    wordCount();
-//    wordPerLine();
+//    wordNewLine();
+//    countDigit();
+    wordLengthHistogram();
     return 0;
 }
+
 
 

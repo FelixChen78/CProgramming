@@ -1,7 +1,7 @@
-/**                            CHEAT CHEAT                                */
+/**                                  CHEAT CHEAT                                     */
 
 
-/**                            C PROGRAMMING                              */
+/**                               C PROGRAMMING                               */
 
 /** C STRINGS
  * new line = \n
@@ -29,8 +29,16 @@
  */
 
 
+/**                                 Terminal                                   */
 
-/**                              GIT/GITHUB                                   */
+/** Terminal commands
+ * change directory: cd path
+ * delete directory: rm path
+ * move/change name of directory: mv path/oldName path/newName
+ * open program on vim: vim fileName.<language>
+*/
+
+/**                               GIT/GITHUB                                   */
 
 /** CLONE A EXISTING PROJECT FROM GITHUB
  * git clone <repository link>
@@ -104,3 +112,4 @@
  * CLONE REPOSITORY FROM GITHUB:
  *  git clone <repository link>
  */
+
