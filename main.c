@@ -10,6 +10,7 @@
 #define R_MAX 10 /* max range of histogram */
 #define F_MAX 20 /* max frequency of histogram */
 #define ASCII_RANGE 127 /* range of ASCII values */
+#define MAX_LINE 1000 /* maximum input line length */
 
 /** Chapter 1 functions */
 
@@ -240,7 +241,6 @@ void wordCount()
  *      boundary conditions
  */
 
-
 void wordNewLine() // Ex 1-12
 {
     int c, state;
@@ -388,7 +388,7 @@ void characterFrequency() // Ex 1-14
 /** FUNCTIONS */
 
 /* function declaration aka function prototype
- *  Note: Function declaration is required when you call the function in another file
+ *  Note: Function declaration is required if you want to call the function in another file
  */
 int power(int m, int n);
 
@@ -402,11 +402,12 @@ int power(int base, int n)
     return p;
 }
 
-int callPower()
+void callPower()
 {
     int i;
     for (i = 0; i < 10; ++i)
         printf("%d %d %d\n", i, power(2,i), power(-3, i));
+//        printf("%d %d %d\n", i, power2(2,i), power2(-3, i));
 }
 
 void fahrenheitCelsiusAsFunction(); // Ex 1-15
@@ -426,8 +427,68 @@ void fahrenheitCelsiusAsFunction()
 
 /** ARGUMENTS - CALL BY VALUE */
 
+/* NOTE: parameter variables are copies and can be used as temporary variables.
+ * It does not apply to array or function since the address to array or function is used.
+ */
 
-/* NOTE: parameter variables are copies and can be used as temporary variables */
+/* power:  raise base to n-th power; n >= 0; version 2 */
+int power2(int base, int n)
+{
+    int p;
+    for (p = 1; n > 0; --n)
+        p = p * base;
+    return p;
+}
+
+/** CHARACTER ARRAYS */
+
+/* getLine:  read a line into s, return length  */
+int getLine(char s[], int lim)
+{
+    int c, i;
+    for (i = 0; i < lim - 1 && (c=getchar()) != EOF && c != '\n'; ++i)
+        s[i] = c;
+    if (c == '\n') {
+        s[i] = c;
+        ++i;
+    }
+    s[i] = '\0';
+    return i;
+}
+/* copy:  copy 'from' into 'to'; assume to is big enough */
+void copy(char to[], char from[])
+{
+    int i;
+    i = 0;
+    while ((to[i] = from[i]) != '\0')
+        ++i;
+}
+
+void longestInputLine()
+{
+    int len;               /* current line length */
+    int max;               /* maximum length seen so far */
+    char line[MAX_LINE];    /* current input line */
+    char longest[MAX_LINE]; /* longest line saved here */
+
+
+    max = 0;
+    while ((len = getLine(line, MAX_LINE)) > 0)
+        if (len > max) {
+            max = len;
+            copy(longest, line);
+        }
+    if (max>0) /*there was a line*/
+        printf("%s", longest);
+}
+
+
+
+
+
+
+
+
 /** Driver Code */
 int main()
 {
@@ -454,8 +515,9 @@ int main()
 //    characterFrequency();
     //(page26)
 //    callPower();
-    fahrenheitCelsiusAsFunction();
-
+//    fahrenheitCelsiusAsFunction();
+    longestInputLine();
+    //(page30)
     return 0;
 }
 
