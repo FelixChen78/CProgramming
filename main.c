@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-/** Chapter 1 definitions */
+/**                                Chapter 1 definitions                               */
 #define LOWER 0 /* lower limit of table */
 #define UPPER 300 /* upper limit */
 #define STEP 20 /* step size */
@@ -13,7 +13,7 @@
 #define MAX_LINE 1000 /* maximum input line length */
 #define LOWER_LINE 80 /* lower limit of line output */
 
-/** Chapter 1 functions */
+/**                                Chapter 1 functions                                 */
 
 /** GETTING STARTED */
 void printHelloWorld() // Ex 1-1
@@ -445,6 +445,7 @@ int power2(int base, int n)
 
 int getLine(char s[], int lim);
 void copy(char to[], char from[]);
+int getLine2(char s[], int lim);
 
 /* getLine:  read a line into s, return length  */
 int getLine(char s[], int lim)
@@ -518,6 +519,19 @@ void over80Characters() // Ex 1-17
 
 }
 
+int getLine2(char s[], int lim)
+{
+    int c, i;
+    for (i = 0; i < lim - 1 && (c=getchar()) != EOF && c != '\n'; ++i)
+        s[i] = c;
+    if (c == '\n') {
+        s[i] = c;
+        ++i;
+    }
+    s[i] = '\0';
+    return i;
+}
+
 void deleteTrailBlankAndTabs() // Ex 1-18
 {
     //
@@ -525,9 +539,11 @@ void deleteTrailBlankAndTabs() // Ex 1-18
 
 
 
+
 /** Driver Code */
 int main()
 {
+    /** Chapter 1 function calls */
 //    printHelloWorld();
 //    unknownEscapeSequence();
 //    fahrenheitCelsiusTable();
@@ -555,7 +571,7 @@ int main()
 //    longestInputLine();
     //(page30)
 //    longestInputLine2();
-    over80Characters();
+//    over80Characters();
 
 
     return 0;
