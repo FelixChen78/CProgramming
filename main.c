@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <math.h>
 /**                                Chapter 1 definitions                               */
 #define LOWER 0 /* lower limit of table */
 #define UPPER 300 /* upper limit */
@@ -538,6 +538,19 @@ void deleteTrailBlankAndTabs() // Ex 1-18
 }
 
 
+int stripLead(int num) // Answer to reddit post
+{
+    int noLead, placeVal;
+    noLead = num;
+    placeVal = 1;
+
+    while (!(num <= 10 && num >= -10)) {
+        num /= 10;
+        placeVal *= 10;
+    }
+    noLead -= num * placeVal;
+    return noLead;
+}
 
 
 /** Driver Code */
