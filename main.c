@@ -11,6 +11,7 @@
 #define F_MAX 20 /* max frequency of histogram */
 #define ASCII_RANGE 127 /* range of ASCII values */
 #define MAX_LINE 1000 /* maximum input line length */
+#define LOWER_LINE 80 /* lower limit of line output */
 
 /** Chapter 1 functions */
 
@@ -442,6 +443,9 @@ int power2(int base, int n)
 
 /** CHARACTER ARRAYS */
 
+int getLine(char s[], int lim);
+void copy(char to[], char from[]);
+
 /* getLine:  read a line into s, return length  */
 int getLine(char s[], int lim)
 {
@@ -482,10 +486,42 @@ void longestInputLine()
         printf("%s", longest);
 }
 
+void longestInputLine2() // Ex 1-16
+{
+    int len, max;
+    char line[MAX_LINE];
+    char longest[MAX_LINE];
 
+    max = 0;
 
+    while ((len = getLine(line, MAX_LINE)) > 0) {
+        printf("%d : %s", len, line);
+        if (len > max) {
+            max = len;
+            copy(longest, line);
+        }
+    }
+    if (max > 0)
+        printf("Longest line is %d characters: %s", max, longest);
+}
 
+void over80Characters() // Ex 1-17
+{
+    int len;
+    char line[MAX_LINE];
 
+    while ((len = getLine(line, MAX_LINE)) > 0) {
+        if (len > LOWER_LINE) {
+            printf("Input line is over %d characters: %s", LOWER_LINE, line);
+        }
+    }
+
+}
+
+void deleteTrailBlankAndTabs() // Ex 1-18
+{
+    //
+}
 
 
 
@@ -516,8 +552,12 @@ int main()
     //(page26)
 //    callPower();
 //    fahrenheitCelsiusAsFunction();
-    longestInputLine();
+//    longestInputLine();
     //(page30)
+//    longestInputLine2();
+    over80Characters();
+
+
     return 0;
 }
 
