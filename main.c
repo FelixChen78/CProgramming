@@ -540,17 +540,9 @@ int getLine2(char s[], int lim)
 
 void deleteTrailBlankAndTabs() // Ex 1-18
 {
-    int len, max;
     char line[MAX_LINE];
-    char longest[MAX_LINE];
-
-    max = 0;
-
-    while ((getLine2(line, MAX_LINE)) > 0) {
-//        copy(longest, line);
+    while ((getLine2(line, MAX_LINE)) > 0)
         printf("%s", line);
-    }
-
 }
 
 
