@@ -12,6 +12,7 @@
 #define ASCII_RANGE 127 /* range of ASCII values */
 #define MAX_LINE 1000 /* maximum input line length */
 #define LOWER_LINE 80 /* lower limit of line output */
+#define SPACE_IN_TAB 7 /* number of blank space to replace tab */
 
 /**                                Chapter 1 functions                                 */
 
@@ -585,6 +586,20 @@ void reverseString() // Ex 1-19
         reverseCopy(line, len);
 }
 
+/** EXTERNAL VARIABLES AND SCOPE */
+void detab() //Ex 1-20
+{
+    int c, i;
+
+    while ((c = getchar()) != EOF) {
+        if (c == '\t')
+            for (i = 0; i < SPACE_IN_TAB; ++i)
+                putchar(' ');
+        else
+            putchar(c);
+    }
+}
+
 
 /** Driver Code */
 int main()
@@ -619,8 +634,8 @@ int main()
 //    longestInputLine2();
 //    over80Characters();
 //    deleteTrailBlankAndTabs();
-    reverseString();
-
+//    reverseString();
+    detab();
     return 0;
 }
 
