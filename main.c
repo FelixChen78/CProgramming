@@ -589,14 +589,20 @@ void reverseString() // Ex 1-19
 /** EXTERNAL VARIABLES AND SCOPE */
 void detab() //Ex 1-20
 {
-    int c, i;
-
+    int c, i, j;
+    j = -1;
     while ((c = getchar()) != EOF) {
-        if (c == '\t')
-            for (i = 0; i < SPACE_IN_TAB; ++i)
+        if (c == '\t') {
+            for (i = 0; i < SPACE_IN_TAB - j; ++i)
                 putchar(' ');
-        else
+            j = -1;
+        }
+        else {
             putchar(c);
+            ++j;
+            if (c == '\n')
+                j = -1;
+        }
     }
 }
 
