@@ -445,7 +445,8 @@ int power2(int base, int n)
 
 int getLine(char s[], int lim);
 void copy(char to[], char from[]);
-int getLine2(char s[], int lim);
+int getLineNoTabNoB(char *s, int lim);
+void reverseCopy(char *s, int len);
 
 /* getLine:  read a line into s, return length  */
 int getLine(char s[], int lim)
@@ -519,7 +520,7 @@ void over80Characters() // Ex 1-17
 
 }
 
-int getLine2(char s[], int lim)
+int getLineNoTabNoB(char *s, int lim)
 {
     int c, i;
     i = 0;
@@ -541,7 +542,7 @@ int getLine2(char s[], int lim)
 void deleteTrailBlankAndTabs() // Ex 1-18
 {
     char line[MAX_LINE];
-    while ((getLine2(line, MAX_LINE)) > 0)
+    while ((getLineNoTabNoB(line, MAX_LINE)) > 0)
         printf("%s", line);
 }
 
@@ -558,6 +559,30 @@ int stripLead(int num) // Answer to reddit post
     }
     noLead -= num * placeVal;
     return noLead;
+}
+
+void reverseCopy(char *s, int len) {
+    int i;
+    char c[len];
+    i = 0;
+    while (len > 0) {
+        --len;
+        if (s[len] != '\0' && s[len] != '\n') {
+            c[i] = s[len];
+            ++i;
+        }
+    }
+    c[++i] = '\n';
+    c[i] = '\0';
+    printf("%s \n", c);
+}
+
+void reverseString() // Ex 1-19
+{
+    int len;
+    char line[MAX_LINE];
+    while ((len = getLine(line, MAX_LINE)) > 0)
+        reverseCopy(line, len);
 }
 
 
@@ -593,7 +618,8 @@ int main()
     //(page30)
 //    longestInputLine2();
 //    over80Characters();
-    deleteTrailBlankAndTabs();
+//    deleteTrailBlankAndTabs();
+    reverseString();
 
     return 0;
 }
