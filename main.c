@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <math.h>
+
 /**                                Chapter 1 definitions                               */
 #define LOWER 0 /* lower limit of table */
 #define UPPER 300 /* upper limit */
