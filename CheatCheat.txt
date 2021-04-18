@@ -6,6 +6,7 @@
 /** C STRINGS
  * new line = \n
  * tab = \t
+ * backspace = \b
  * backslash = \\
  * double quote = \"
  * string format specifier = %s
