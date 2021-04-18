@@ -522,19 +522,35 @@ void over80Characters() // Ex 1-17
 int getLine2(char s[], int lim)
 {
     int c, i;
-    for (i = 0; i < lim - 1 && (c=getchar()) != EOF && c != '\n'; ++i)
-        s[i] = c;
+    i = 0;
+    while (i < lim - 1 && (c=getchar()) != EOF && c != '\n')
+        if (c!=' ' && c!= '\t') {
+            s[i] = c;
+            ++i;
+        }
+
     if (c == '\n') {
         s[i] = c;
         ++i;
     }
+
     s[i] = '\0';
     return i;
 }
 
 void deleteTrailBlankAndTabs() // Ex 1-18
 {
-    //
+    int len, max;
+    char line[MAX_LINE];
+    char longest[MAX_LINE];
+
+    max = 0;
+
+    while ((getLine2(line, MAX_LINE)) > 0) {
+//        copy(longest, line);
+        printf("%s", line);
+    }
+
 }
 
 
@@ -585,7 +601,7 @@ int main()
     //(page30)
 //    longestInputLine2();
 //    over80Characters();
-
+    deleteTrailBlankAndTabs();
 
     return 0;
 }
