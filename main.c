@@ -606,6 +606,32 @@ void detab() //Ex 1-20
     }
 }
 
+void entab() //Ex 1-21
+{
+    /**
+     * hello     my         name         is      jeff
+     * const: IN, OUT
+     * vars: spaceCount = 0, spaceReduce = -1
+     *
+     * init_state = out
+     *
+     * loop read each char until EOF
+     *      if char not space
+     *          if state is OUT
+     *              state = IN
+     *              spaceCount = 0
+     *          spaceReduce ++
+     *          print char
+     *      if char is space
+     *          if space count >= (SPACE_IN_TAB - spaceReduce)
+     *              print tab
+     *          if state is IN
+     *              state = OUT
+     *              spaceReduce = -1
+     */
+
+}
+
 
 /** Driver Code */
 int main()
@@ -641,7 +667,10 @@ int main()
 //    over80Characters();
 //    deleteTrailBlankAndTabs();
 //    reverseString();
-    detab();
+//    detab();
+    entab();
+
+
     return 0;
 }
 
