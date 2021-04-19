@@ -629,7 +629,32 @@ void entab() //Ex 1-21
      *              state = OUT
      *              spaceReduce = -1
      */
+     int c, state, spaceCount, spaceReduce;
+     state = OUT;
+     spaceReduce = 1;
+     spaceCount = 0;
 
+     while ((c = getchar()) != EOF) {
+         if (c != ' ') {
+             if (state == OUT) {
+                 state = IN;
+                 spaceCount = 0;
+             }
+             ++spaceReduce;
+             putchar(c);
+         }
+         if (c == ' ') {
+             ++spaceCount;
+             if (spaceCount >= (SPACE_IN_TAB - spaceReduce)) {
+                 putchar('\t');
+                 spaceCount -= (SPACE_IN_TAB - spaceReduce);
+             }
+             if (state == IN) {
+                 state = OUT;
+                 spaceReduce = 1;
+             }
+         }
+     }
 }
 
 
