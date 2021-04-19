@@ -600,7 +600,7 @@ void detab() //Ex 1-20
         else {
             putchar(c);
             ++j;
-            if (c == '\n')
+            if (c == '\n' || j == SPACE_IN_TAB)
                 j = -1;
         }
     }
@@ -640,7 +640,8 @@ void entab() //Ex 1-21
                  state = IN;
                  spaceCount = 0;
              }
-             ++spaceReduce;
+             if (c != '\n')
+                ++spaceReduce;
              putchar(c);
          }
          if (c == ' ') {
@@ -692,8 +693,8 @@ int main()
 //    over80Characters();
 //    deleteTrailBlankAndTabs();
 //    reverseString();
-//    detab();
-    entab();
+    detab();
+//    entab();
 
 
     return 0;
