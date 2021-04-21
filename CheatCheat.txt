@@ -34,7 +34,7 @@
 
 /** Terminal commands
  * change directory: cd path
- * delete directory: rm path
+ * delete directory: rm path; rm -rf path
  * move/change name of directory: mv path/oldName path/newName
  * open program on vim: vim fileName.<language>
 */
@@ -114,3 +114,10 @@
  *  git clone <repository link>
  */
 
+/**                               Intellij                                   */
+
+/**
+* multi cursor:
+*       shift + option + mouse click
+*       option + option hold + arrow up or down
+*/

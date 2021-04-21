@@ -642,6 +642,9 @@ void entab() //Ex 1-21
              }
              if (c != '\n')
                 ++spaceReduce;
+             if (spaceReduce == SPACE_IN_TAB) //
+                 spaceCount = 0;
+
              putchar(c);
          }
          if (c == ' ') {
@@ -693,8 +696,9 @@ int main()
 //    over80Characters();
 //    deleteTrailBlankAndTabs();
 //    reverseString();
-    detab();
-//    entab();
+//    detab();
+    entab();
+    //page 34
 
 
     return 0;
