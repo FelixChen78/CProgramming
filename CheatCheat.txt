@@ -112,6 +112,10 @@
  *  git checkout -b <local-branch>
  * CLONE REPOSITORY FROM GITHUB:
  *  git clone <repository link>
+ * CHANGE REMOTE ORIGIN:
+ *  git remote set-url origin <repository link>
+ * View REMOTE ORIGIN:
+ *  git remote -v
  */
 
 /**                               Intellij                                   */
