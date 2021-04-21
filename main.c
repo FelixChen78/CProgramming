@@ -13,6 +13,7 @@
 #define MAX_LINE 1000 /* maximum input line length */
 #define LOWER_LINE 80 /* lower limit of line output */
 #define SPACE_IN_TAB 7 /* number of blank space to replace tab */
+#define CHAR_LINE_MAX 50 /* max number of char allowed per line */
 
 /**                                Chapter 1 functions                                 */
 
@@ -641,7 +642,34 @@ void entab() //Ex 1-21
 }
 
 
+/** Steps:
+ * initialize spaceCounter // used to check if space occurs in line
+ * read each character and store word into line array
+ * have a counter to record index of where space occurs
+ *      store the index of where space occurs in a separate array
+ *      increment spaceCounter
+ * check if character in line array less than max CHAR_LINE_MAX
+ *      check if space occurs
+ *          loop spaceIndex array
+ *              record index closes to half length of array length
+ *              replace index if prev closes is closer to array length / 2
+ *
+ */
+void fold() // Ex 1-22
+{
+    int c, i, j;
 
+    while ((c = getchar()) != EOF) {
+
+    }
+
+
+}
+
+void removeComments() // Ex 1-23
+{
+
+}
 /** Driver Code */
 int main()
 {
@@ -677,7 +705,7 @@ int main()
 //    deleteTrailBlankAndTabs();
 //    reverseString();
 //    detab();
-    entab();
+//    entab();
     //page 34
 
 
@@ -685,4 +713,7 @@ int main()
 }
 
 
-
+/**
+ * CLEAR TERMINAL:
+ *  cmd + k
+ */
