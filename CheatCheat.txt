@@ -114,6 +114,8 @@
  *  git clone <repository link>
  * CHANGE REMOTE ORIGIN:
  *  git remote set-url origin <repository link>
+ * CHANGE REMOTE UPSTREAM:
+ *  git remote set-url upstream <repository link>
  * View REMOTE ORIGIN:
  *  git remote -v
  */
