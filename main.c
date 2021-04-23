@@ -657,10 +657,22 @@ void entab() //Ex 1-21
  */
 void fold() // Ex 1-22
 {
-    int c, i, j;
+    int c, i, spaceCount, indexCount;
+    int line[MAX_LINE];
+    int index[CHAR_LINE_MAX];
+    i = indexCount = 0;
+
 
     while ((c = getchar()) != EOF) {
-
+        line[++i] = c;
+        if (c == ' ') {
+            index[++indexCount] = spaceCount;
+        }
+        if (c == '\n') {
+            if (i > CHAR_LINE_MAX) {
+                return;
+            }
+        }
     }
 
 
@@ -716,4 +728,12 @@ int main()
 /**
  * CLEAR TERMINAL:
  *  cmd + k
+ * CHECK DIRECTORY:
+ *  pwd
+ * COPY AND PASTE:
+ *  cp fileName directoryPath
+ * CREATE FILE:
+ *  touch fileName.<file type>
+ * CREATE DIRECTORY:
+ *  mkdir path/directoryName
  */
