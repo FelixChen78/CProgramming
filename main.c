@@ -653,26 +653,31 @@ void entab() //Ex 1-21
  *          loop spaceIndex array
  *              record index closes to half length of array length
  *              replace index if prev closes is closer to array length / 2
- *
+ * AEIOU -> \n -, space, tab
  */
 void fold() // Ex 1-22
 {
-    int c, i, spaceCount, indexCount;
+    int c, i, j, spaceCount;
     int line[MAX_LINE];
     int index[CHAR_LINE_MAX];
-    i = indexCount = 0;
+    i = spaceCount = 0;
 
 
+    //get line
     while ((c = getchar()) != EOF) {
-        line[++i] = c;
-        if (c == ' ') {
-            index[++indexCount] = spaceCount;
-        }
-        if (c == '\n') {
-            if (i > CHAR_LINE_MAX) {
-                return;
-            }
-        }
+        //char != '\n'
+            //store char into line
+            // increment counter
+        //if char == '\n'
+            //store '\n' in line
+            //loop line
+                // if there is space or tab before MAX_CHAR
+                    //next line for space or tab closest to MAX_CHAR
+                    // use increment and decrement to point to index in array
+
+                // else
+                    // use hyphen 1 char before MAX_CHAR and go to next line
+                    /** PLEASE INCREMENT and SAVE CHAR COUNT for current line  */
     }
 
 
@@ -682,6 +687,7 @@ void removeComments() // Ex 1-23
 {
 
 }
+
 /** Driver Code */
 int main()
 {
