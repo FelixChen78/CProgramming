@@ -731,15 +731,3 @@ int main()
 }
 
 
-/**
- * CLEAR TERMINAL:
- *  cmd + k
- * CHECK DIRECTORY:
- *  pwd
- * COPY AND PASTE:
- *  cp fileName directoryPath
- * CREATE FILE:
- *  touch fileName.<file type>
- * CREATE DIRECTORY:
- *  mkdir path/directoryName
- */
