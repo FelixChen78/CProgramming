@@ -34,23 +34,23 @@
 
 /** Terminal commands
  * change directory:
- *      cd path
+ *  cd path
  * delete directory:
- *      rm path; rm -rf path
+ *  rm path; rm -rf path
  * move/change name of directory:
- *      mv path/oldName path/newName
+ *  mv path/oldName path/newName
  * open program on vim:
- *      vim fileName.<language>
+ *  vim fileName.<language>
  * CLEAR TERMINAL:
- *      cmd + k
+ *  cmd + k
  * CHECK CURRENT DIRECTORY:
- *      pwd
+ *  pwd
  * COPY AND PASTE:
- *      cp fileName directoryPath
+ *  cp fileName directoryPath
  * CREATE FILE:
- *      touch fileName.<file type>
+ *  touch fileName.<file type>
  * CREATE DIRECTORY:
- *      mkdir path/directoryName
+ *  mkdir path/directoryName
  */
 
 /**                               GIT/GITHUB                                   */

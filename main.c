@@ -642,42 +642,15 @@ void entab() //Ex 1-21
 }
 
 
-/** Steps:
- * initialize spaceCounter // used to check if space occurs in line
- * read each character and store word into line array
- * have a counter to record index of where space occurs
- *      store the index of where space occurs in a separate array
- *      increment spaceCounter
- * check if character in line array less than max CHAR_LINE_MAX
- *      check if space occurs
- *          loop spaceIndex array
- *              record index closes to half length of array length
- *              replace index if prev closes is closer to array length / 2
- * AEIOU -> \n -, space, tab
- */
 void fold() // Ex 1-22
 {
     int c, i, j, spaceCount;
     int line[MAX_LINE];
     int index[CHAR_LINE_MAX];
-    i = spaceCount = 0;
 
 
-    //get line
+
     while ((c = getchar()) != EOF) {
-        //char != '\n'
-            //store char into line
-            // increment counter
-        //if char == '\n'
-            //store '\n' in line
-            //loop line
-                // if there is space or tab before MAX_CHAR
-                    //next line for space or tab closest to MAX_CHAR
-                    // use increment and decrement to point to index in array
-
-                // else
-                    // use hyphen 1 char before MAX_CHAR and go to next line
-                    /** PLEASE INCREMENT and SAVE CHAR COUNT for current line  */
     }
 
 
@@ -707,17 +680,17 @@ int main()
 //    blankTabsNewlineCount();
 //    replaceMultipleSpaceWithOne();
 //    toEscapeSequence();
-    //(page22)
+//    (page22)
 //    wordCount();
 //    wordNewLine();
 //    countDigit();
 //    wordLengthHistogram();
 //    characterFrequency();
-    //(page26)
+//    (page26)
 //    callPower();
 //    fahrenheitCelsiusAsFunction();
 //    longestInputLine();
-    //(page30)
+//    (page30)
 //    longestInputLine2();
 //    over80Characters();
 //    deleteTrailBlankAndTabs();
