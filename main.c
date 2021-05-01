@@ -644,16 +644,7 @@ void entab() //Ex 1-21
 
 void fold() // Ex 1-22
 {
-    int c, i, j, spaceCount;
-    int line[MAX_LINE];
-    int index[CHAR_LINE_MAX];
-
-
-
-    while ((c = getchar()) != EOF) {
-    }
-
-
+    /** Description: Break each line into smaller lines near the tabs and spaces. Do something creative if there are no space or tabs */
 }
 
 void removeComments() // Ex 1-23
