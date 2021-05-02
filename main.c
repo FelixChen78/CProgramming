@@ -22,7 +22,6 @@ void printHelloWorld() // Ex 1-1
 {
     char helloWorld[] = "Hello, World ! \n";
     printf("%s", helloWorld);
-
 }
 
 void unknownEscapeSequence() // Ex 1-2
