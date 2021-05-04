@@ -647,29 +647,29 @@ void fold() // Ex 1-22
 
     int lines = 1; // num of lines
     int count = 0; // elem in arr
-    int indiceCount = 0;
+    int indicesCount = 0;
     int c, i;
 
     char line[MAX_LINE];
-    int indice[MAX_LINE];
+    int indices[MAX_LINE];
 
     while ((c = getchar()) != EOF) {
         //reads in line
         if (c != '\n') {
             if (c == ' ' ||  c == '\t') {
-                indice[++indiceCount] = count;
+                //will not use arr for solution, only indicesCount
+                //can be used to place a new line at a specific index where space and tab occurs
+                indices[indicesCount++] = count;
             }
-            line[count] = c;
-            count ++;
+            line[count++] = c;
         }
-        //formats line
+        //formats line into multiple lines
         else {
-            line[count] = c;
-            count ++;
+            line[count++] = c;
             if (!(count > CHAR_LINE_MAX)) {
                 printf("%s", line);
             }
-            else if (indiceCount > 0) {
+            else if (indicesCount > 0) {
                 for (i = 0; i < count; ++i) {
                     if (line[i] == '\t' || line[i] == ' ') {
                         putchar('\n');
@@ -692,7 +692,7 @@ void fold() // Ex 1-22
                 line[i] = '\0';
             }
             count = 0;
-            indiceCount = 0;
+            indicesCount = 0;
         }
     }
 }
