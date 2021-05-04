@@ -1,2 +1,2 @@
 # kr-exercises
-This is the full collection of C exercises from K&amp;R second edition
+This is a collection of C exercises from K&amp;R second edition
