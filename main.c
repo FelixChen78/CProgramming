@@ -693,6 +693,7 @@ void fold() // Ex 1-22
             }
             count = 0;
             indicesCount = 0;
+            lines = 1;
         }
     }
 }
