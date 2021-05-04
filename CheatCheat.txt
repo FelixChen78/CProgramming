@@ -132,6 +132,10 @@
  *  git remote set-url upstream <repository link>
  * View REMOTE ORIGIN:
  *  git remote -v
+ * Show origin associated with project
+ *  git remote show origin
+ * Remove origin associated with project
+ *  git remote rm origin
  */
 
 /**                               Intellij                                   */
