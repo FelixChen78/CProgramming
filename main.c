@@ -13,7 +13,7 @@
 #define MAX_LINE 1000 /* maximum input line length */
 #define LOWER_LINE 80 /* lower limit of line output */
 #define SPACE_IN_TAB 7 /* number of blank space to replace tab */
-#define CHAR_LINE_MAX 50 /* max number of char allowed per line */
+#define CHAR_LINE_MAX 10 /* max number of char allowed per line */
 
 /**                                Chapter 1 functions                                 */
 
@@ -644,6 +644,57 @@ void entab() //Ex 1-21
 void fold() // Ex 1-22
 {
     /** Description: Break each line into smaller lines near the tabs and spaces. Do something creative if there are no space or tabs */
+
+    int lines = 1; // num of lines
+    int count = 0; // elem in arr
+    int indiceCount = 0;
+    int c, i;
+
+    char line[MAX_LINE];
+    int indice[MAX_LINE];
+
+    while ((c = getchar()) != EOF) {
+        //reads in line
+        if (c != '\n') {
+            if (c == ' ' ||  c == '\t') {
+                indice[++indiceCount] = count;
+            }
+            line[count] = c;
+            count ++;
+        }
+        //formats line
+        else {
+            line[count] = c;
+            count ++;
+            if (!(count > CHAR_LINE_MAX)) {
+                printf("%s", line);
+            }
+            else if (indiceCount > 0) {
+                for (i = 0; i < count; ++i) {
+                    if (line[i] == '\t' || line[i] == ' ') {
+                        putchar('\n');
+                    }
+                    else {
+                        putchar(line[i]);
+                    }
+                }
+            }
+            else {
+                for(i = 0; i < count; ++i) {
+                    if (i == (lines * CHAR_LINE_MAX)) {
+                        printf("-\n");
+                        ++lines;
+                    }
+                    putchar(line[i]);
+                }
+            }
+            for (i = 0; i < count; ++i) {
+                line[i] = '\0';
+            }
+            count = 0;
+            indiceCount = 0;
+        }
+    }
 }
 
 void removeComments() // Ex 1-23
@@ -688,6 +739,7 @@ int main()
 //    detab();
 //    entab();
     //page 34
+    fold();
 
 
     return 0;
