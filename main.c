@@ -715,6 +715,7 @@ void fold() // Ex 1-22
 
 /** PSEUDO CODE:
  *      slash = false, / => true. switches back to false if next char is not / or *
+ *      astrix = false, multiComment && * => true. switches back to false next character
  *      singleComment = false switches to true when slash true and slash immediately follows
  *      multiComment = false switch true when slash true and astrix immediately follows
  *      quotes = false, ' => true. switches back to false when closing quote
@@ -730,7 +731,7 @@ void fold() // Ex 1-22
  *
  *      //sets up comment states
  *          Check if not singleComment and not multiComment and not quote and not double quote
- *              check if char is slash
+ *              check if char is slash and not slash
  *                  slash = true
  *              check if slash and char is astrix
  *                  slash = false
@@ -745,8 +746,7 @@ void fold() // Ex 1-22
  *                      quote = true
  *                  if char is double quote
  *                      doubleQuotes = true
- *                  if !(singleComment or multiComment)
- *                      prints char
+ *                  prints char
  *      //terminate quote state
  *          check if quote
  *              check if char is quote
@@ -771,8 +771,71 @@ void fold() // Ex 1-22
 
 void removeComments() // Ex 1-23
 {
+    int c, slash = 0, astrix = 0, singleComment = 0, multiComment = 0, quote = 0, doubleQuote = 0;
+    while ((c = getchar()) != EOF) {
+        if (!singleComment && !multiComment && !quote && !doubleQuote) {
+            if (c == '/' && !slash) {
+                slash = 1;
+            }
+            else if (slash && c == '*') {
+                slash = 0;
+                multiComment = 1;
+            }
+            else if (slash && c == '/') {
+                slash = 0;
+                singleComment = 1;
+            }
+            else {
+                slash = 0;
+                if (c == '\'') {
+                    quote = 1;
+                }
+                if (c == '\"') {
+                    doubleQuote = 1;
+                }
+
+                putchar(c);
+
+            }
+        }
+        //ignores all characters until comment termination
+        else if (singleComment) {
+            if (c == '\n') {
+                singleComment = 0;
+                putchar('\n');
+            }
+        }
+        else if (multiComment) {
+            if (c == '*') {
+                astrix = 1;
+            }
+            else if (astrix && c == '/') {
+                astrix = 0;
+                multiComment = 0;
+
+            }
+        }
+        //continues to print all characters inside quotes
+        else {
+            if (quote) {
+                //quote termination
+                if (c == '\'') {
+                    quote = 0;
+                }
+            }
+            if (doubleQuote) {
+                //double quote termination
+                if (c == '\"') {
+                    doubleQuote = 0;
+                }
+            }
+            putchar(c);
+        }
+    }
 
 }
+
+
 
 /** Driver Code */
 int main()
@@ -812,6 +875,7 @@ int main()
 //    entab();
     //page 34
 //    fold();
+    removeComments();
 
 
     return 0;
