@@ -809,10 +809,12 @@ void removeComments() // Ex 1-23
             if (c == '*') {
                 astrix = 1;
             }
-            else if (astrix && c == '/') {
+            else if (astrix) {
                 astrix = 0;
-                multiComment = 0;
-
+                if (c == '/') {
+                    // bug,  /**   *    / still counts as multi line
+                    multiComment = 0;
+                }
             }
         }
         //continues to print all characters inside quotes
