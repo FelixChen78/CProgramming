@@ -72,7 +72,7 @@ CMAKE_BINARY_DIR = /Users/felixchen/CLionProjects/kr-exercises/cmake-build-debug
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/CPorgramming.dir/all
+all: CMakeFiles/KR_EXERCISES.dir/all
 
 .PHONY : all
 
@@ -82,36 +82,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/CPorgramming.dir/clean
+clean: CMakeFiles/KR_EXERCISES.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/CPorgramming.dir
+# Target rules for target CMakeFiles/KR_EXERCISES.dir
 
 # All Build rule for target.
-CMakeFiles/CPorgramming.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CPorgramming.dir/build.make CMakeFiles/CPorgramming.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CPorgramming.dir/build.make CMakeFiles/CPorgramming.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/felixchen/CLionProjects/kr-exercises/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target CPorgramming"
-.PHONY : CMakeFiles/CPorgramming.dir/all
+CMakeFiles/KR_EXERCISES.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/KR_EXERCISES.dir/build.make CMakeFiles/KR_EXERCISES.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/KR_EXERCISES.dir/build.make CMakeFiles/KR_EXERCISES.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/felixchen/CLionProjects/kr-exercises/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target KR_EXERCISES"
+.PHONY : CMakeFiles/KR_EXERCISES.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/CPorgramming.dir/rule: cmake_check_build_system
+CMakeFiles/KR_EXERCISES.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/felixchen/CLionProjects/kr-exercises/cmake-build-debug/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/CPorgramming.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/KR_EXERCISES.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/felixchen/CLionProjects/kr-exercises/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/CPorgramming.dir/rule
+.PHONY : CMakeFiles/KR_EXERCISES.dir/rule
 
 # Convenience name for target.
-CPorgramming: CMakeFiles/CPorgramming.dir/rule
+KR_EXERCISES: CMakeFiles/KR_EXERCISES.dir/rule
 
-.PHONY : CPorgramming
+.PHONY : KR_EXERCISES
 
 # clean rule for target.
-CMakeFiles/CPorgramming.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CPorgramming.dir/build.make CMakeFiles/CPorgramming.dir/clean
-.PHONY : CMakeFiles/CPorgramming.dir/clean
+CMakeFiles/KR_EXERCISES.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/KR_EXERCISES.dir/build.make CMakeFiles/KR_EXERCISES.dir/clean
+.PHONY : CMakeFiles/KR_EXERCISES.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -130,17 +130,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named CPorgramming
+# Target rules for targets named KR_EXERCISES
 
 # Build rule for target.
-CPorgramming: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CPorgramming
-.PHONY : CPorgramming
+KR_EXERCISES: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 KR_EXERCISES
+.PHONY : KR_EXERCISES
 
 # fast build rule for target.
-CPorgramming/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CPorgramming.dir/build.make CMakeFiles/CPorgramming.dir/build
-.PHONY : CPorgramming/fast
+KR_EXERCISES/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/KR_EXERCISES.dir/build.make CMakeFiles/KR_EXERCISES.dir/build
+.PHONY : KR_EXERCISES/fast
 
 main.o: main.c.o
 
@@ -148,7 +148,7 @@ main.o: main.c.o
 
 # target to build an object file
 main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CPorgramming.dir/build.make CMakeFiles/CPorgramming.dir/main.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/KR_EXERCISES.dir/build.make CMakeFiles/KR_EXERCISES.dir/main.c.o
 .PHONY : main.c.o
 
 main.i: main.c.i
@@ -157,7 +157,7 @@ main.i: main.c.i
 
 # target to preprocess a source file
 main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CPorgramming.dir/build.make CMakeFiles/CPorgramming.dir/main.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/KR_EXERCISES.dir/build.make CMakeFiles/KR_EXERCISES.dir/main.c.i
 .PHONY : main.c.i
 
 main.s: main.c.s
@@ -166,7 +166,7 @@ main.s: main.c.s
 
 # target to generate assembly for a file
 main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CPorgramming.dir/build.make CMakeFiles/CPorgramming.dir/main.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/KR_EXERCISES.dir/build.make CMakeFiles/KR_EXERCISES.dir/main.c.s
 .PHONY : main.c.s
 
 # Help Target
@@ -177,7 +177,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... CPorgramming"
+	@echo "... KR_EXERCISES"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

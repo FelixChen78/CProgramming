@@ -643,8 +643,6 @@ void entab() //Ex 1-21
 
 void fold() // Ex 1-22
 {
-    /** Description: Break each line into smaller lines near the tabs and spaces. Do something creative if there are no space or tabs */
-
     int lines = 1; // num of lines
     int count = 0; // elem in arr
     int indicesCount = 0;
@@ -671,6 +669,8 @@ void fold() // Ex 1-22
             }
             else if (indicesCount > 0) {
                 for (i = 0; i < count; ++i) {
+                    //my solution new lines every space or tab
+                    //modified solution could be to newline space or tab nearing CHAR_LINE_MAX using indices arr
                     if (line[i] == '\t' || line[i] == ' ') {
                         putchar('\n');
                     }
@@ -680,7 +680,7 @@ void fold() // Ex 1-22
                 }
             }
             else {
-                for(i = 0; i < count; ++i) {
+                for (i = 0; i < count; ++i) {
                     if (i == (lines * CHAR_LINE_MAX)) {
                         printf("-\n");
                         ++lines;
@@ -697,6 +697,77 @@ void fold() // Ex 1-22
         }
     }
 }
+
+/** Prompt:
+ *      Write a program to remove all comments from a C program.
+ *      Don't forget to handle quoted strings and character constants properly.
+ *      C comments don't nest.
+ */
+
+/** CASES:
+// *    Not required:
+// *        single slash => prints syntax error
+// *        non comment mode astrix => prints syntax error
+ *      single line comment => removes until next line
+ *      multi line comment => removes until * followed by / in consecutive order
+ *      character constants: '\\' or "\\" => if quote or double quote, ignore until matching quote/ double quote
+ */
+
+/** PSEUDO CODE:
+ *      slash = false, / => true. switches back to false if next char is not / or *
+ *      singleComment = false switches to true when slash true and slash immediately follows
+ *      multiComment = false switch true when slash true and astrix immediately follows
+ *      quotes = false, ' => true. switches back to false when closing quote
+ *      doubleQuotes = false, " => true. switches back to false when closing double quote
+ *
+ *      4 states:
+ *          singleComment state -> prints nothing until \n
+ *          multiComment state -> prints nothing until * and /
+ *          double quotes -> prints nothing until double quotes
+ *          single quotes -> prints nothing until single quotes
+ *
+ *      Read in characters.
+ *
+ *      //sets up comment states
+ *          Check if not singleComment and not multiComment and not quote and not double quote
+ *              check if char is slash
+ *                  slash = true
+ *              check if slash and char is astrix
+ *                  slash = false
+ *                  multiComment = true
+ *              check if slash and char is slash
+ *                  slash = false
+ *                  singleComment = true
+ *              else
+ *                  slash = false
+ *                  //checks for quotes and double quote
+ *                  if char is quote
+ *                      quote = true
+ *                  if char is double quote
+ *                      doubleQuotes = true
+ *                  if !(singleComment or multiComment)
+ *                      prints char
+ *      //terminate quote state
+ *          check if quote
+ *              check if char is quote
+ *                  quote = false
+ *              print char
+ *          check if doubleQuotes
+ *              check if char is double quote
+ *                  doubleQuote = false
+ *              print char
+ *      //terminate comment state
+ *          Check if singleComment and \n
+ *              singleComment = false
+ *          check if multiComment
+ *              check if astrix is false and char is astrix
+ *                  astrix = true
+ *              check if astrix is true
+ *                  astrix is false
+ *                  check if char is slash
+ *                      multiComment = false
+ *
+ */
 
 void removeComments() // Ex 1-23
 {
@@ -740,7 +811,7 @@ int main()
 //    detab();
 //    entab();
     //page 34
-    fold();
+//    fold();
 
 
     return 0;
