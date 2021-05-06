@@ -664,7 +664,7 @@ void fold() // Ex 1-22
         //formats line into multiple lines
         else {
             line[count++] = c;
-            if (!(count > CHAR_LINE_MAX)) {
+            if (count <= CHAR_LINE_MAX) {
                 printf("%s", line);
             }
             else if (indicesCount > 0) {
@@ -812,7 +812,6 @@ void removeComments() // Ex 1-23
             else if (astrix) {
                 astrix = 0;
                 if (c == '/') {
-                    // bug,  /**   *    / still counts as multi line
                     multiComment = 0;
                 }
             }
@@ -838,6 +837,30 @@ void removeComments() // Ex 1-23
 }
 
 
+/** Prompt:
+ *      Write a program to check a C program for rudimentary syntax errors like unmatched parentheses, brackets and braces.
+ *      Don't forget about quotes, both single and double, escape sequences, and comments.
+ *      (This program is hard if you do it in full generality.)
+ */
+
+/** CASES:
+ *      Uneven pairs: quotes, parenthesis, brackets, braces
+ *      Wrong start: parenthesis, brackets, braces => ex. }{, ][, )(
+ *      Single quotes -> check for escape sequence => opening and closing pair => terminator
+ *      Double quotes -> check for escape sequence => opening and closing pair => terminator
+ *      Parenthesis => opening and closing pair
+ *      Brackets => opening and closing pair => terminator
+ *      Braces => ()  == true => {} or else == true => {}
+ *      single line comment
+ *      multi line comment
+ *      escape sequence aka \n, \b, \t, \\ etc
+ *      terminator aka ;
+ */
+
+void removeSyntaxError() //Ex 1-24
+{
+    //
+}
 
 /** Driver Code */
 int main()
