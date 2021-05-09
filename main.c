@@ -14,7 +14,7 @@
 #define MAX_LINE 1000 /* maximum input line length */
 #define LOWER_LINE 80 /* lower limit of line output */
 #define SPACE_IN_TAB 7 /* number of blank space to replace tab */
-#define CHAR_LINE_MAX 10 /* max number of char allowed per line */
+#define FOLD_MAX 10 /* max number of char allowed per line */
 
 /**                                Chapter 1 functions                                 */
 
@@ -665,13 +665,13 @@ void fold() // Ex 1-22
         //formats line into multiple lines
         else {
             line[count++] = c;
-            if (count <= CHAR_LINE_MAX) {
+            if (count <= FOLD_MAX) {
                 printf("%s", line);
             }
             else if (indicesCount > 0) {
                 for (i = 0; i < count; ++i) {
                     //my solution new lines every space or tab
-                    //modified solution could be to newline space or tab nearing CHAR_LINE_MAX using indices arr
+                    //modified solution could be to newline space or tab nearing FOLD_MAX using indices arr
                     if (line[i] == '\t' || line[i] == ' ') {
                         putchar('\n');
                     }
@@ -682,7 +682,7 @@ void fold() // Ex 1-22
             }
             else {
                 for (i = 0; i < count; ++i) {
-                    if (i == (lines * CHAR_LINE_MAX)) {
+                    if (i == (lines * FOLD_MAX)) {
                         printf("-\n");
                         ++lines;
                     }
@@ -868,24 +868,134 @@ void removeComments() // Ex 1-23
  *              //MATCHING
  *              QUOTE
  *                  SLASH
- *                      VALID ESCAPE SEQUENCE
+ *                      Check if not VALID ESCAPE SEQUENCE
+ *                          print INVALID ESCAPE SEQUENCE
  *              DOUBLE QUOTE
  *                  SLASH
- *                      VALID ESCAPE SEQUENCE
+ *                      INVALID ESCAPE SEQUENCE
+ *                          print INVALID ESCAPE SEQUENCE
  *              //CHECK FOR INCORRECT START: } || ] || ||)
  *              //IF AND ONLY IF CONDITIONS: { => } || ( => ) || [ => ]
+ *
+ *              //IF !QUOTE && !DOUBLE QUOTE && !COMMENT && !MULTI COMMENT
  *              PARENTHESIS
+ *                  Check IF !PARENTHESIS
+ *                      Check IF character is CLOSING
+ *                          print INVALID PARENTHESIS
+ *                      Check IF Character is OPENING
+ *                          PARENTHESIS is true
+ *                  ELSE
+ *                      IF Character is CLOSING
+ *                          PARENTHESIS is false
+ *                      ELSE IF Character is OPENING
+ *                          PARENTHESIS is false
+ *                          print INVALID PARENTHESIS
+ *
  *              BRACES
  *              BRACKETS
  */
 
 
-
-void removeSyntaxError() //Ex 1-24
+/** Only implemented with specs in prompt which is matching bracket, braces, parenthesis, quotes, comments, and escape sequence. Not assuming multiple same brackets */
+//A better implementation would be to use palindrome to consider multiple braces, brackets, and parenthesis
+void syntaxError() //Ex 1-24
 {
-    int c, i;
+    int c;
+    int slash = 0, comment = 0, multiComment = 0, quote = 0, doubleQuote = 0, parenthesis = 0, braces, bracket;
 
     while ((c = getchar()) != EOF) {
+        if (!slash && c == '\\') {
+            slash = 1;
+        }
+        else if (slash) {
+            if (!quote && !doubleQuote) {
+                if (c == '\\') {
+                    comment = 1;
+                }
+                else if (c == '*') {
+                    multiComment = 2;
+                }
+
+            }
+            else if (c != '\b' && c != '\t' && c != '\'' && c != '\"' && c != '\n' && c != '\f' && c != '\r' && c != '\?' && c != '\a' && c != '\\') {
+                printf("INVALID ESCAPE SEQUENCE \n");
+            }
+            slash = 0;
+        }
+        else if (comment || multiComment > 0) {
+            if (comment && c == '\n') {
+                comment = 0;
+            }
+            else if (c == '*') {
+                multiComment = 1;
+            }
+            else if (multiComment == 1) {
+                if (c == '/') {
+                    multiComment = 0;
+                }
+                else {
+                    multiComment = 2;
+                }
+            }
+        }
+        else {
+            if (c == '\'') {
+                if (!quote) {
+                    quote = 1;
+                }
+                else {
+                    quote = 0;
+                }
+            }
+            else if (c == '\"') {
+                if (!doubleQuote) {
+                    doubleQuote = 1;
+                }
+                else {
+                    doubleQuote = 0;
+                }
+            }
+            else if (!quote && !doubleQuote) {
+                if (c == '(') {
+                    parenthesis = 1;
+                }
+                else if (c == '[') {
+                    bracket = 1;
+                }
+                else if (c == '{') {
+                    braces = 1;
+                }
+                else if (parenthesis) {
+                    if ((c == ']' || c == '}')) {
+                        parenthesis = 0;
+                        printf("INVALID PARENTHESIS PAIR \n");
+                    }
+                    else if (c == ')'){
+                        parenthesis = 0;
+                    }
+                }
+                else if (braces) {
+                    if (c == ')' || c == ']') {
+                        braces = 0;
+                        printf("INVALID BRACES PAIR \n");
+                    }
+                    else if (c == '}') {
+                        braces = 0;
+                    }
+                }
+                else if (bracket) {
+                    if (c == ')' || c == '}') {
+                        bracket = 0;
+                        printf("INVALID BRACKET PAIR \n");
+                    }
+                    else if (c == ']') {
+                        bracket = 0;
+                    }
+                }
+
+            }
+        }
+
 
     }
 }
@@ -929,8 +1039,7 @@ int main()
     //page 34
 //    fold();
 //    removeComments();
-
-
+    syntaxError();
     return 0;
 }
 
