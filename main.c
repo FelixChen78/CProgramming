@@ -859,7 +859,18 @@ void removeComments() // Ex 1-23
 
 void removeSyntaxError() //Ex 1-24
 {
-    //
+    int c, i;
+    int quotes = 0, parenthesis = 0, brackets = 0, braces = 0;
+    int inSingleQuotes = 0;
+    int inBraces = 0;
+    int inBrackets = 0;
+    int terminate = 0;
+    int conditional = 0;
+    int loop = 0;
+
+    while ((c = getchar()) != EOF) {
+        //
+    }
 }
 
 /** Driver Code */
@@ -900,7 +911,7 @@ int main()
 //    entab();
     //page 34
 //    fold();
-    removeComments();
+//    removeComments();
 
 
     return 0;
