@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 /**                                Chapter 1 definitions                               */
 #define LOWER 0 /* lower limit of table */
@@ -857,19 +858,43 @@ void removeComments() // Ex 1-23
  *      terminator aka ;
  */
 
+/** PSEUDO:
+ *
+ *      states => FUNCTIONS
+ *                  => CONDITIONALS
+ *                  => LOOPS
+ *                  => FUNCTION CALLS
+ *                      => TERMINATOR
+ *             => VARIABLES
+ *                  => TERMINATOR
+ *             => COMMENTS
+ *                  => ALL syntaxError null
+ *
+ *      dataType{space}name {only space, equals, space while not inFunction or variable}
+ *                          {look for braces => inFunction} => dataType => name => comma? repeat: closeBraces? pass: syntaxError => openBracket? pass:syntaxError
+ *                          {look for = sign => isVariable} => {matching dataType && no space? pass: syntaxError} => {after new line isTerminator? pass:syntaxError}
+ *
+ *
+ *
+ *
+ */
+
+
+void readType() {
+
+}
 void removeSyntaxError() //Ex 1-24
 {
     int c, i;
-    int quotes = 0, parenthesis = 0, brackets = 0, braces = 0;
-    int inSingleQuotes = 0;
-    int inBraces = 0;
-    int inBrackets = 0;
-    int terminate = 0;
-    int conditional = 0;
-    int loop = 0;
+    char state[] = "GLOBAL";
+
 
     while ((c = getchar()) != EOF) {
         //
+        if (strcmp(state, "GLOBAL") != 0) {
+//            if (c == '')
+        }
+
     }
 }
 
