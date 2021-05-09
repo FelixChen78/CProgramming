@@ -859,41 +859,33 @@ void removeComments() // Ex 1-23
  */
 
 /** PSEUDO:
- *
- *      states => FUNCTIONS
- *                  => CONDITIONALS
- *                  => LOOPS
- *                  => FUNCTION CALLS
- *                      => TERMINATOR
- *             => VARIABLES
- *                  => TERMINATOR
- *             => COMMENTS
- *                  => ALL syntaxError null
- *
- *      dataType{space}name {only space, equals, space while not inFunction or variable}
- *                          {look for braces => inFunction} => dataType => name => comma? repeat: closeBraces? pass: syntaxError => openBracket? pass:syntaxError
- *                          {look for = sign => isVariable} => {matching dataType && no space? pass: syntaxError} => {after new line isTerminator? pass:syntaxError}
- *
- *
- *
- *
+ *      READ CHARACTER IN
+ *          CHECK WHICH STATE:
+ *              SLASH
+ *                  COMMENT: SLASH
+ *                  MULTI COMMENT: **
+ *                      CLOSING * and /
+ *              //MATCHING
+ *              QUOTE
+ *                  SLASH
+ *                      VALID ESCAPE SEQUENCE
+ *              DOUBLE QUOTE
+ *                  SLASH
+ *                      VALID ESCAPE SEQUENCE
+ *              //CHECK FOR INCORRECT START: } || ] || ||)
+ *              //IF AND ONLY IF CONDITIONS: { => } || ( => ) || [ => ]
+ *              PARENTHESIS
+ *              BRACES
+ *              BRACKETS
  */
 
 
-void readType() {
 
-}
 void removeSyntaxError() //Ex 1-24
 {
     int c, i;
-    char state[] = "GLOBAL";
-
 
     while ((c = getchar()) != EOF) {
-        //
-        if (strcmp(state, "GLOBAL") != 0) {
-//            if (c == '')
-        }
 
     }
 }
