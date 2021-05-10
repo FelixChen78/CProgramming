@@ -15,6 +15,8 @@
 #define LOWER_LINE 80 /* lower limit of line output */
 #define SPACE_IN_TAB 7 /* number of blank space to replace tab */
 #define FOLD_MAX 10 /* max number of char allowed per line */
+#define true 1
+#define false 0
 
 /**                                Chapter 1 functions                                 */
 
@@ -772,27 +774,27 @@ void fold() // Ex 1-22
 
 void removeComments() // Ex 1-23
 {
-    int c, slash = 0, astrix = 0, singleComment = 0, multiComment = 0, quote = 0, doubleQuote = 0;
+    int c, slash = false, astrix = false, singleComment = false, multiComment = false, quote = false, doubleQuote = false;
     while ((c = getchar()) != EOF) {
         if (!singleComment && !multiComment && !quote && !doubleQuote) {
             if (c == '/' && !slash) {
-                slash = 1;
+                slash = true;
             }
             else if (slash && c == '*') {
-                slash = 0;
-                multiComment = 1;
+                slash = false;
+                multiComment = true;
             }
             else if (slash && c == '/') {
-                slash = 0;
-                singleComment = 1;
+                slash = false;
+                singleComment = true;
             }
             else {
                 slash = 0;
                 if (c == '\'') {
-                    quote = 1;
+                    quote = true;
                 }
                 if (c == '\"') {
-                    doubleQuote = 1;
+                    doubleQuote = true;
                 }
 
                 putchar(c);
@@ -802,18 +804,18 @@ void removeComments() // Ex 1-23
         //ignores all characters until comment termination
         else if (singleComment) {
             if (c == '\n') {
-                singleComment = 0;
+                singleComment = false;
                 putchar('\n');
             }
         }
         else if (multiComment) {
             if (c == '*') {
-                astrix = 1;
+                astrix = true;
             }
             else if (astrix) {
-                astrix = 0;
+                astrix = false;
                 if (c == '/') {
-                    multiComment = 0;
+                    multiComment = false;
                 }
             }
         }
@@ -822,13 +824,13 @@ void removeComments() // Ex 1-23
             if (quote) {
                 //quote termination
                 if (c == '\'') {
-                    quote = 0;
+                    quote = false;
                 }
             }
             if (doubleQuote) {
                 //double quote termination
                 if (c == '\"') {
-                    doubleQuote = 0;
+                    doubleQuote = false;
                 }
             }
             putchar(c);
@@ -844,160 +846,153 @@ void removeComments() // Ex 1-23
  *      (This program is hard if you do it in full generality.)
  */
 
-/** CASES:
- *      Uneven pairs: quotes, parenthesis, brackets, braces
- *      Wrong start: parenthesis, brackets, braces => ex. }{, ][, )(
- *      Single quotes -> check for escape sequence => opening and closing pair => terminator
- *      Double quotes -> check for escape sequence => opening and closing pair => terminator
- *      Parenthesis => opening and closing pair
- *      Brackets => opening and closing pair => terminator
- *      Braces => ()  == true => {} or else == true => {}
- *      single line comment
- *      multi line comment
- *      escape sequence aka \n, \b, \t, \\ etc
- *      terminator aka ;
+/**
+ * STATES:
+ *      comment state
+ *      quote state
+ *          escape sequence
+ *      normal state
+ *
+ *
  */
 
-/** PSEUDO:
- *      READ CHARACTER IN
- *          CHECK WHICH STATE:
- *              SLASH
- *                  COMMENT: SLASH
- *                  MULTI COMMENT: **
- *                      CLOSING * and /
- *              //MATCHING
- *              QUOTE
- *                  SLASH
- *                      Check if not VALID ESCAPE SEQUENCE
- *                          print INVALID ESCAPE SEQUENCE
- *              DOUBLE QUOTE
- *                  SLASH
- *                      INVALID ESCAPE SEQUENCE
- *                          print INVALID ESCAPE SEQUENCE
- *              //CHECK FOR INCORRECT START: } || ] || ||)
- *              //IF AND ONLY IF CONDITIONS: { => } || ( => ) || [ => ]
- *
- *              //IF !QUOTE && !DOUBLE QUOTE && !COMMENT && !MULTI COMMENT
- *              PARENTHESIS
- *                  Check IF !PARENTHESIS
- *                      Check IF character is CLOSING
- *                          print INVALID PARENTHESIS
- *                      Check IF Character is OPENING
- *                          PARENTHESIS is true
- *                  ELSE
- *                      IF Character is CLOSING
- *                          PARENTHESIS is false
- *                      ELSE IF Character is OPENING
- *                          PARENTHESIS is false
- *                          print INVALID PARENTHESIS
- *
- *              BRACES
- *              BRACKETS
- */
-
-
-/** Only implemented with specs in prompt which is matching bracket, braces, parenthesis, quotes, comments, and escape sequence. Not assuming multiple same brackets */
-//A better implementation would be to use palindrome to consider multiple braces, brackets, and parenthesis
+/** Only implemented with specs in prompt which is matching bracket, braces, parenthesis, quotes, comments, and escape sequence. Not assuming multiple nested brackets, braces, and parenthesis */
+//A better implementation would be to use palindrome to consider multiple nested braces, brackets, and parenthesis
 void syntaxError() //Ex 1-24
 {
     int c;
-    int slash = 0, comment = 0, multiComment = 0, quote = 0, doubleQuote = 0, parenthesis = 0, braces, bracket;
+    int slash = false;
+    int backslash = false;
+    int comment = false;
+    int multiComment = false;
+    int astrix = false;
+    int quote = false;
+    int doubleQuote = false;
+    int bracket = false;
+    int braces = false;
+    int parenthesis = false;
+
 
     while ((c = getchar()) != EOF) {
-        if (!slash && c == '\\') {
-            slash = 1;
-        }
-        else if (slash) {
-            if (!quote && !doubleQuote) {
-                if (c == '\\') {
-                    comment = 1;
-                }
-                else if (c == '*') {
-                    multiComment = 2;
-                }
-
+        //can't enter comment state while in quote state
+        if (!quote && !doubleQuote) {
+            //initialize comment state
+            if (!slash && c == '/') {
+                slash = true;
             }
-            else if (c != '\b' && c != '\t' && c != '\'' && c != '\"' && c != '\n' && c != '\f' && c != '\r' && c != '\?' && c != '\a' && c != '\\') {
-                printf("INVALID ESCAPE SEQUENCE \n");
-            }
-            slash = 0;
-        }
-        else if (comment || multiComment > 0) {
-            if (comment && c == '\n') {
-                comment = 0;
-            }
-            else if (c == '*') {
-                multiComment = 1;
-            }
-            else if (multiComment == 1) {
+            else if (slash) {
                 if (c == '/') {
-                    multiComment = 0;
+                    comment = true;
                 }
-                else {
-                    multiComment = 2;
+                if (c == '*') {
+                    multiComment = true;
+                }
+            }
+            //terminate comment state
+            if (comment && c == '\n') {
+                comment = false;
+            }
+            if (multiComment) {
+                if (!astrix && c == '*') {
+                    astrix = true;
+                }
+                else if (astrix) {
+                    astrix = false;
+                    if (c == '/') {
+                        multiComment = false;
+                    }
                 }
             }
         }
-        else {
+        //can't enter quote state while in comment state
+        if (!comment && !multiComment) {
+            //initialize else terminate quote state
             if (c == '\'') {
-                if (!quote) {
-                    quote = 1;
+                if (!quote && !doubleQuote) {
+                    quote = true;
+                }
+                else if (doubleQuote) {
+                    //unmatched quote
+                    printf("EXPECTED DOUBLE QUOTE \n");
                 }
                 else {
-                    quote = 0;
+                    quote = false;
                 }
             }
-            else if (c == '\"') {
-                if (!doubleQuote) {
-                    doubleQuote = 1;
+            if (c == '\"') {
+                if (!quote && !doubleQuote) {
+                    doubleQuote = true;
+                }
+                else if (quote) {
+                    //unmatched double quote
+                    printf("EXPECTING QUOTE \n");
                 }
                 else {
-                    doubleQuote = 0;
+                    doubleQuote = false;
                 }
-            }
-            else if (!quote && !doubleQuote) {
-                if (c == '(') {
-                    parenthesis = 1;
-                }
-                else if (c == '[') {
-                    bracket = 1;
-                }
-                else if (c == '{') {
-                    braces = 1;
-                }
-                else if (parenthesis) {
-                    if ((c == ']' || c == '}')) {
-                        parenthesis = 0;
-                        printf("INVALID PARENTHESIS PAIR \n");
-                    }
-                    else if (c == ')'){
-                        parenthesis = 0;
-                    }
-                }
-                else if (braces) {
-                    if (c == ')' || c == ']') {
-                        braces = 0;
-                        printf("INVALID BRACES PAIR \n");
-                    }
-                    else if (c == '}') {
-                        braces = 0;
-                    }
-                }
-                else if (bracket) {
-                    if (c == ')' || c == '}') {
-                        bracket = 0;
-                        printf("INVALID BRACKET PAIR \n");
-                    }
-                    else if (c == ']') {
-                        bracket = 0;
-                    }
-                }
-
             }
         }
+        //escape sequence check only in quote state
+        if (quote || doubleQuote) {
+            if (!backslash && c == '\\') {
+                backslash = true;
+            }
+            else if (backslash) {
+                backslash = false;
+                if (c != 'b' && c != 't' && c != '\'' && c != '\"' && c != 'n' && c != 'f' && c != 'r' && c != '?' && c != 'a' && c != '\\') {
+                    printf("INVALID ESCAPE SEQUENCE \n");
+                }
+            }
+        }
+        if (!comment && !multiComment && !quote && !doubleQuote) {
+            if (!parenthesis && !bracket && !braces) {
+                if (c == '{') {
+                    braces = true;
+                }
+                if (c == '[') {
+                    bracket = true;
+                }
+                if (c == '(') {
+                    parenthesis = true;
+                }
+                if (c == '}' || c == ']' || c == ')') {
+                    printf("INVALID START \n");
+                }
+            }
+            if (parenthesis) {
+                if (c == '}' || c == ']') {
+                    parenthesis = false;
+                    printf("INVALID PARENTHESIS PAIR \n");
+                }
+                if (c == ')') {
+                    parenthesis = false;
+                }
+            }
+            if (bracket) {
+                if (c == '}' || c == ')') {
+                    bracket = false;
+                    printf("INVALID BRACKET PAIR \n");
+                }
+                if (c == ']') {
+                    bracket = false;
+                }
+            }
+            if (braces) {
+                if (c == ')' || c == ']') {
+                    braces = false;
+                    printf("INVALID BRACES PAIR \n");
+                }
+                if (c == '}') {
+                    braces = false;
+                }
+            }
+        }
+
 
 
     }
+
+
 }
 
 /** Driver Code */
@@ -1019,24 +1014,24 @@ int main()
 //    blankTabsNewlineCount();
 //    replaceMultipleSpaceWithOne();
 //    toEscapeSequence();
-//    (page22)
+////    (page22)
 //    wordCount();
 //    wordNewLine();
 //    countDigit();
 //    wordLengthHistogram();
 //    characterFrequency();
-//    (page26)
+////    (page26)
 //    callPower();
 //    fahrenheitCelsiusAsFunction();
 //    longestInputLine();
-//    (page30)
+////    (page30)
 //    longestInputLine2();
 //    over80Characters();
 //    deleteTrailBlankAndTabs();
 //    reverseString();
 //    detab();
 //    entab();
-    //page 34
+////    page 34
 //    fold();
 //    removeComments();
     syntaxError();
