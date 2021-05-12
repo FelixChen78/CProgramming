@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+#include <float.h>
 
 /**                                Chapter 1 definitions                               */
 #define LOWER 0 /* lower limit of table */
@@ -994,9 +998,36 @@ void syntaxError() //Ex 1-24
  * Harder if you compute them: determine the ranges of the various floating-point types.
  */
 
-void rangeOfVar()
+void rangeOfData()
 {
-    //
+    printf("CHAR_BIT    :   %d\n", CHAR_BIT);
+    printf("CHAR_MIN    :   %d\n", CHAR_MIN);
+    printf("CHAR_MAX    :   %d\n", CHAR_MAX);
+
+    printf("INT_MIN     :   %d\n", INT_MIN);
+    printf("INT_MAX     :   %d\n", INT_MAX);
+
+    printf("LONG_MIN    :   %ld\n", (long) LONG_MIN);
+    printf("LONG_MAX    :   %ld\n", (long) LONG_MAX);
+
+
+    printf("SCHAR_MIN   :   %d\n", SCHAR_MIN);
+    printf("SCHAR_MAX   :   %d\n", SCHAR_MAX);
+
+
+    printf("SHRT_MIN    :   %d\n", SHRT_MIN);
+    printf("SHRT_MAX    :   %d\n", SHRT_MAX);
+
+    printf("UCHAR_MAX   :   %d\n", UCHAR_MAX);
+
+    printf("UINT_MIN    :   %u\n", 0);
+    printf("UINT_MAX    :   %u\n", (unsigned int) UINT_MAX);
+
+    printf("ULONG_MIN   :   %d\n", 0);
+    printf("ULONG_MAX   :   %lu\n", (unsigned long) ULONG_MAX);
+
+    printf("USHRT_MIN   :   %d\n", 0);
+    printf("USHRT_MAX   :   %d\n", (unsigned short) USHRT_MAX);
 }
 
 
@@ -1041,6 +1072,7 @@ int main()
 //    fold();
 //    removeComments();
 //    syntaxError();
+    rangeOfData();
     return 0;
 }
 
