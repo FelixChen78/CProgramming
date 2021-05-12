@@ -3,3 +3,9 @@
 
 CMakeFiles/KR_EXERCISES.dir/main.c.o: ../main.c
 
+CMakeFiles/KR_EXERCISES.dir/test/main.c.o: ../test/main.c
+
+CMakeFiles/KR_EXERCISES.dir/test/test.c.o: ../test/test.c
+
+CMakeFiles/KR_EXERCISES.dir/testing.c.o: ../testing.c
+
