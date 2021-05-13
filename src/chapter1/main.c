@@ -1,10 +1,9 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <limits.h>
-#include <float.h>
 
-/**                                Chapter 1 definitions                               */
+
+
+
 #define LOWER 0 /* lower limit of table */
 #define UPPER 300 /* upper limit */
 #define STEP 20 /* step size */
@@ -21,7 +20,7 @@
 #define true 1
 #define false 0
 
-/**                                Chapter 1 functions                                 */
+
 
 /** GETTING STARTED */
 void printHelloWorld() // Ex 1-1
@@ -991,32 +990,11 @@ void syntaxError() //Ex 1-24
     }
 }
 
-/** Exercise 2-1.
- * Write a program to determine the ranges of char, short, int, and long variables, both signed and unsigned,
- * by printing appropriate values from standard headers and by direct computation.
- * Harder if you compute them: determine the ranges of the various floating-point types.
- */
-
-void rangeOfData() //Ex 2-1
-{
-    printf("CHAR_MIN = %d, CHAR_MAX = %d \n", CHAR_MIN, CHAR_MAX);
-    printf("INT_MIN = %d, INT_MAX = %d \n", INT_MIN, INT_MAX);
-    printf("LONG_MIN = %ld, LONG_MAX = %ld \n", (long) LONG_MIN, (long) LONG_MAX);
-    printf("SCHAR_MIN = %d, SCHAR_MAX = %d \n", SCHAR_MIN, SCHAR_MAX);
-    printf("SHRT_MIN = %d, SHRT_MAX = %d \n", SHRT_MIN, SHRT_MAX);
-    printf("UCHAR_MIN = %d, UCHAR_MAX = %d \n", 0, UCHAR_MAX);
-    printf("UINT_MIN = %d, UINT_MAX = %d \n", 0, (unsigned int)UINT_MAX);
-    printf("ULONG_MIN = %d, ULONG_MAX = %lu \n", 0, (unsigned long) ULONG_MAX);
-    printf("USHRT_MIN = %d, USHRT_MAX = %d \n", 0, (unsigned short) USHRT_MAX);
-
-}
-
 
 
 /** Driver Code */
 int main()
 {
-    /** Chapter 1 function calls */
 //    printHelloWorld();
 //    unknownEscapeSequence();
 //    fahrenheitCelsiusTable();
@@ -1053,7 +1031,6 @@ int main()
 //    fold();
 //    removeComments();
 //    syntaxError();
-    rangeOfData();
     return 0;
 }
 

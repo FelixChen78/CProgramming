@@ -78,7 +78,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/felixchen/CLionProjects/kr-exercises/main.c">
+		<Unit filename="/Users/felixchen/CLionProjects/kr-exercises/src/main.c">
 			<Option target="KR_EXERCISES"/>
 		</Unit>
 		<Unit filename="/Users/felixchen/CLionProjects/kr-exercises/CMakeLists.txt">

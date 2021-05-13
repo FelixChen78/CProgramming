@@ -76,27 +76,27 @@ include CMakeFiles/KR_EXERCISES.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/KR_EXERCISES.dir/flags.make
 
-CMakeFiles/KR_EXERCISES.dir/main.c.o: CMakeFiles/KR_EXERCISES.dir/flags.make
-CMakeFiles/KR_EXERCISES.dir/main.c.o: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/felixchen/CLionProjects/kr-exercises/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/KR_EXERCISES.dir/main.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/KR_EXERCISES.dir/main.c.o -c /Users/felixchen/CLionProjects/kr-exercises/main.c
+CMakeFiles/KR_EXERCISES.dir/src/main.c.o: CMakeFiles/KR_EXERCISES.dir/flags.make
+CMakeFiles/KR_EXERCISES.dir/src/main.c.o: ../src/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/felixchen/CLionProjects/kr-exercises/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/KR_EXERCISES.dir/src/main.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/KR_EXERCISES.dir/src/main.c.o -c /Users/felixchen/CLionProjects/kr-exercises/src/main.c
 
-CMakeFiles/KR_EXERCISES.dir/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/KR_EXERCISES.dir/main.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/felixchen/CLionProjects/kr-exercises/main.c > CMakeFiles/KR_EXERCISES.dir/main.c.i
+CMakeFiles/KR_EXERCISES.dir/src/main.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/KR_EXERCISES.dir/src/main.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/felixchen/CLionProjects/kr-exercises/src/main.c > CMakeFiles/KR_EXERCISES.dir/src/main.c.i
 
-CMakeFiles/KR_EXERCISES.dir/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/KR_EXERCISES.dir/main.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/felixchen/CLionProjects/kr-exercises/main.c -o CMakeFiles/KR_EXERCISES.dir/main.c.s
+CMakeFiles/KR_EXERCISES.dir/src/main.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/KR_EXERCISES.dir/src/main.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/felixchen/CLionProjects/kr-exercises/src/main.c -o CMakeFiles/KR_EXERCISES.dir/src/main.c.s
 
 # Object files for target KR_EXERCISES
 KR_EXERCISES_OBJECTS = \
-"CMakeFiles/KR_EXERCISES.dir/main.c.o"
+"CMakeFiles/KR_EXERCISES.dir/src/main.c.o"
 
 # External object files for target KR_EXERCISES
 KR_EXERCISES_EXTERNAL_OBJECTS =
 
-KR_EXERCISES: CMakeFiles/KR_EXERCISES.dir/main.c.o
+KR_EXERCISES: CMakeFiles/KR_EXERCISES.dir/src/main.c.o
 KR_EXERCISES: CMakeFiles/KR_EXERCISES.dir/build.make
 KR_EXERCISES: CMakeFiles/KR_EXERCISES.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/felixchen/CLionProjects/kr-exercises/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable KR_EXERCISES"

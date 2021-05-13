@@ -6,15 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/Users/felixchen/CLionProjects/kr-exercises/main.c
+/Users/felixchen/CLionProjects/kr-exercises/chapter1/main.c
 stdio.h
 -
-stdlib.h
--
-string.h
--
 limits.h
--
-float.h
 -
 

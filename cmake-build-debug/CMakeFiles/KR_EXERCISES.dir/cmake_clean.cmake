@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/KR_EXERCISES.dir/main.c.o"
+  "CMakeFiles/KR_EXERCISES.dir/src/main.c.o"
   "KR_EXERCISES"
   "KR_EXERCISES.pdb"
 )
