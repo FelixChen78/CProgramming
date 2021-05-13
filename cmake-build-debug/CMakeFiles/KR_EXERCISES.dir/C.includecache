@@ -9,11 +9,9 @@
 /Users/felixchen/CLionProjects/kr-exercises/main.c
 stdio.h
 -
-string.h
--
-stdio.h
--
 stdlib.h
+-
+string.h
 -
 limits.h
 -
