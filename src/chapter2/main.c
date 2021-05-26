@@ -18,10 +18,13 @@ void rangeOfData() //Ex 2-1
 }
 
 
+
+
+
 /** Driver Code */
 int main()
 {
-    rangeOfData();
+//    rangeOfData();
     return 0;
 }
 
