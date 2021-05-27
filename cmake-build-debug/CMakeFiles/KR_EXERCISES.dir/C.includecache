@@ -6,9 +6,5 @@
 
 #IncludeRegexTransform: 
 
-/Users/felixchen/CLionProjects/kr-exercises/chapter1/main.c
-stdio.h
--
-limits.h
--
+/Users/felixchen/CLionProjects/kr-exercises/src/main.c
 

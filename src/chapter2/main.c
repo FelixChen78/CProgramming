@@ -17,6 +17,24 @@ void rangeOfData() //Ex 2-1
     printf("USHRT_MIN = %d, USHRT_MAX = %d \n", 0, (unsigned short) USHRT_MAX);
 }
 
+void noRelational() //Ex 2-2
+{
+    int c, i = 0, lim = 10;
+    char s[lim];
+
+    while ((c=getchar()) != EOF) {
+        if (c != '\n') {
+            if (i < lim - 1) {
+                s[i] = c;
+                i++;
+            }
+        }
+        else {
+            break;
+        }
+    }
+    printf("%s \n", s);
+}
 
 
 
@@ -25,6 +43,7 @@ void rangeOfData() //Ex 2-1
 int main()
 {
 //    rangeOfData();
+    noRelational();
     return 0;
 }
 
