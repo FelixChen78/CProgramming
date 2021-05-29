@@ -28,6 +28,9 @@ void noRelational() //Ex 2-2
                 s[i] = c;
                 i++;
             }
+            else {
+                break;
+            }
         }
         else {
             break;
@@ -43,7 +46,7 @@ void noRelational() //Ex 2-2
 int main()
 {
 //    rangeOfData();
-    noRelational();
+//    noRelational();
     return 0;
 }
 
