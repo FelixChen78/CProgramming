@@ -59,6 +59,16 @@
  * git clone <repository link>
  */
 
+/** CREATE PULL REQUEST
+ * Pull requests -> New pull request
+ * choose base theRepository
+ * choose compare theRepositoryMergedIntoBase
+ */
+
+/** REVIEW PULL REQUEST
+ * Pull requests -> some request -> Commits -> Review Changes -> {comment, approve, request changes}
+ */
+
 /** ADD PROJECT TO GITHUB
  * Initial commit and push to repository:
  * git init
