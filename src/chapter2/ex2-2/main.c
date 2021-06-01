@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 int main()
 {
     int c, i = 0, lim = 10;

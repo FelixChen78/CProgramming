@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 int main()
 {
     printf("CHAR_MIN = %d, CHAR_MAX = %d \n", CHAR_MIN, CHAR_MAX);
